@@ -20,7 +20,7 @@ A fighter, in addition to the information he has as a character, has the followi
 
 An advisor, in addition to the information he has as a character, has the following information: - Character he advises (who can be a king, fighter, advisor or squire) - When communicating he says: "I don't know why, but I think I'm going to die soon".
 
-A squire, in addition to the information he has as a character, has the following information: - Character he serves (who can only be a fighter) - Degree of pelotism (a value between 0 and 10) - When communicating he says: "I'm a loser".
+A squire, in addition to the information he has as a character, has the following information: - Character he serves (who can only be a fighter) - Degree of suckingUp (a value between 0 and 10) - When communicating he says: "I'm a loser".
 
 0. Create the following JS files and make them work as modules via import and export:
 
