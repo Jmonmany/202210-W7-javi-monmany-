@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Advisor } from './Advisor.js';
 import { Fighter } from './Fighter.js';
 import { King } from './King.js';
