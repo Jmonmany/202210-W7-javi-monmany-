@@ -55,8 +55,7 @@ const main = () => {
                                 <ul class="list-unstyled">
                                     <li>Age: ${characters[i].age} years</li>
                                     <li>
-                                        Estado:
-                                        <i class="fas fa-thumbs-down"></i>
+                                        State:
                                         <i class="fas fa-thumbs-up"></i>
                                     </li>
                                 </ul>
@@ -172,6 +171,39 @@ const main = () => {
     });
     const slots = document.querySelectorAll('slot');
     slots.forEach((item, i) => (item.outerHTML = charactersTemplate[i]));
+
+    // Die-button-action
+    // <i class="fas fa-thumbs-down"></i>;
+    function buttonActions(event: Event) {
+        const element = event.target as HTMLElement;
+
+        if (element.innerText === 'Die') {
+            let i =
+                element.parentElement?.parentElement?.parentElement?.children[1]
+                    .children[0].children[1].children[0];
+
+            i?.classList.replace('fa-thumbs-up', 'fa-thumbs-down');
+
+            let image =
+                element.parentElement?.parentElement?.parentElement
+                    ?.parentElement?.children[0];
+            image?.classList.add('rotate')
+        }
+    }
+
+    const nodeList = document.querySelectorAll('div button');
+
+    nodeList.forEach((item) => item.addEventListener('click', buttonActions));
 };
 
+// const characterButtons: Array = [
+//     ...document.querySelectorAll('.character__action'),
+// ];
+
+// const values = [...characterButtons].map((item) => item)
+// console.log(values)
+// [...characterButtons].forEach((item) =>
+//     item.addEventListener('click', buttonActions)
+// );
+// console.log(characterButtons);
 document.addEventListener('DOMContentLoaded', main);
