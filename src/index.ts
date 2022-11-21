@@ -9,13 +9,14 @@ import { Squire } from './Squire.js';
 
 // characterMessages(characters);
 
-type imagesType = {
+type stringType = {
     src: string;
     alt: string;
 };
+
 let charactersTemplate: string[] = [];
 const main = () => {
-    const images: imagesType[] = [
+    const images: stringType[] = [
         {
             src: './assets/img/joffrey.jpg',
             alt: `${characters[0].name} ${characters[0].family}`,
@@ -37,7 +38,28 @@ const main = () => {
             alt: `${characters[4].name} ${characters[4].family}`,
         },
     ];
-
+    const datatype: stringType[] = [
+        {
+            src: './assets/img/joffrey.jpg',
+            alt: `${characters[0].name} ${characters[0].family}`,
+        },
+        {
+            src: './assets/img/jaime.jpg',
+            alt: `${characters[1].name} ${characters[1].family}`,
+        },
+        {
+            src: './assets/img/daenerys.jpg',
+            alt: `${characters[2].name} ${characters[2].family}`,
+        },
+        {
+            src: './assets/img/tyrion.jpg',
+            alt: `${characters[3].name} ${characters[3].family}`,
+        },
+        {
+            src: './assets/img/bronn.jpg',
+            alt: `${characters[4].name} ${characters[4].family}`,
+        },
+    ];
     characters.forEach((item, i) => {
         let characterTemp: string;
         characterTemp = `<li class="character col">
@@ -68,10 +90,10 @@ const main = () => {
                                         }</li>
                                     </ul>
                                     <div class="character__actions">
-                                        <button class="character__action btn">
+                                        <button class="character__action btn" data-value = "${i}">
                                             Speak
                                         </button>
-                                        <button class="character__action btn">
+                                        <button class="character__action btn" data-value = "${i}">
                                             Die
                                         </button>
                                     </div>
@@ -90,10 +112,10 @@ const main = () => {
                                         }</li>
                                     </ul>
                                     <div class="character__actions">
-                                        <button class="character__action btn">
+                                        <button class="character__action btn" data-value = "${i}">
                                             Speak
                                         </button>
-                                        <button class="character__action btn">
+                                        <button class="character__action btn" data-value = "${i}">
                                             Die
                                         </button>
                                     </div>
@@ -112,10 +134,10 @@ const main = () => {
                                         }</li>
                                     </ul>
                                     <div class="character__actions">
-                                        <button class="character__action btn">
+                                        <button class="character__action btn" data-value = "${i}">
                                             Speak
                                         </button>
-                                        <button class="character__action btn">
+                                        <button class="character__action btn" data-value = "${i}">
                                             Die
                                         </button>
                                     </div>
@@ -131,10 +153,10 @@ const main = () => {
                                         }</li>
                                     </ul>
                                     <div class="character__actions">
-                                        <button class="character__action btn">
+                                        <button class="character__action btn" data-value = "${i}">
                                             Speak
                                         </button>
-                                        <button class="character__action btn">
+                                        <button class="character__action btn" data-value = "${i}">
                                             Die
                                         </button>
                                     </div>
@@ -154,10 +176,10 @@ const main = () => {
                                         }</li>
                                     </ul>
                                     <div class="character__actions">
-                                        <button class="character__action btn">
+                                        <button class="character__action btn" data-value = "${i}">
                                             Speak
                                         </button>
-                                        <button class="character__action btn">
+                                        <button class="character__action btn" data-value = "${i}">
                                             Die
                                         </button>
                                     </div>
@@ -176,7 +198,7 @@ const main = () => {
     // <i class="fas fa-thumbs-down"></i>;
     function buttonActions(event: Event) {
         const element = event.target as HTMLElement;
-
+        if (element === undefined) return;
         if (element.innerText === 'Die') {
             let i =
                 element.parentElement?.parentElement?.parentElement?.children[1]
@@ -187,7 +209,12 @@ const main = () => {
             let image =
                 element.parentElement?.parentElement?.parentElement
                     ?.parentElement?.children[0];
-            image?.classList.add('rotate')
+            image?.classList.add('rotate');
+
+            let dataButtonValue: number = +(element.dataset.value as any);
+
+            characters[dataButtonValue].death();
+            console.table(characters[dataButtonValue]);
         }
     }
 
