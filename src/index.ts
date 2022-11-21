@@ -60,7 +60,7 @@ const main = () => {
                                         </li>
                                         </ul>
                                         </div>`;
-        if (i === 0) {
+        if (characters[i] instanceof King) {
             characterTemp += `<div class="character__overlay">
             <ul class="list-unstyled">
             <li>Years of reign: ${(characters[i] as King).yearsOfReign}</li>
@@ -77,7 +77,7 @@ const main = () => {
                                             </div>
                                             <i class="emoji">👑</i>`;
         }
-        if (i === 1) {
+        if (characters[i] instanceof Fighter) {
             characterTemp += `<div class="character__overlay">
                                     <ul class="list-unstyled">
                                     <li>Weapon: ${
@@ -99,29 +99,7 @@ const main = () => {
                                 </div>
                                 <i class="emoji">🗡</i>`;
         }
-        if (i === 2) {
-            characterTemp += `<div class="character__overlay">
-                                    <ul class="list-unstyled">
-                                        <li>Weapon: ${
-                                            (characters[i] as Fighter).weapon
-                                        }</li>
-                                        <li>Dexterity: ${
-                                            (characters[i] as Fighter).dexterity
-                                        }</li>
-                                    </ul>
-                                    <div class="character__actions">
-                                        <button class="character__action btn" data-value = "${i}">
-                                            Speak
-                                        </button>
-                                        <button class="character__action btn" data-value = "${i}">
-                                            Die
-                                            </button>
-                                            </div>
-                                            </div>
-                                            </div>
-                                            <i class="emoji">🗡</i>`;
-        }
-        if (i === 3) {
+        if (characters[i] instanceof Advisor) {
             characterTemp += `<div class="character__overlay">
                                     <ul class="list-unstyled">
                                     <li>Advising to: ${
@@ -140,7 +118,7 @@ const main = () => {
                                     </div>
                                     <i class="emoji">🎓</i>`;
         }
-        if (i === 4) {
+        if (characters[i] instanceof Squire) {
             characterTemp += `<div class="character__overlay">
                                     <ul class="list-unstyled">
                                     <li>Serving to: ${
@@ -163,7 +141,6 @@ const main = () => {
                         </div>
                         <i class="emoji">🛡</i>`;
         }
-
         characterTemp += `</div></li>`;
         charactersTemplate.push(characterTemp);
     });
@@ -172,7 +149,7 @@ const main = () => {
 
     function buttonActions(event: Event) {
         const element = event.target as HTMLElement;
-        let dataButtonValue: number = +(element.dataset.value as any);
+        let dataButtonValue = +(element.dataset.value as string);
         if (element.innerText === 'Die') {
             dieFunction(element);
             return characters[dataButtonValue].death();
@@ -206,7 +183,6 @@ const dieFunction = (element: HTMLElement) => {
             .children[0].children[1].children[0];
 
     i?.classList.replace('fa-thumbs-up', 'fa-thumbs-down');
-
     let image =
         element.parentElement?.parentElement?.parentElement?.parentElement
             ?.children[0];
