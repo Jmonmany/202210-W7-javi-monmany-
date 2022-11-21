@@ -7,10 +7,11 @@ export class Fighter extends Character {
         age: number,
         state: boolean,
         message: string,
+        src: string,
         public weapon: string,
         public dexterity: number
     ) {
-        super(name, family, age, state, message);
+        super(name, family, age, state, message, src);
         state = true;
         message = 'First I hit and then I ask';
     }

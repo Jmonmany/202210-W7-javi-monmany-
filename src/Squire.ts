@@ -7,10 +7,11 @@ export class Squire extends Character {
         age: number,
         state: boolean,
         message: string,
+        src: string,
         public serving: string,
         public degreeOfSuckingUp: number
     ) {
-        super(name, family, age, state, message);
+        super(name, family, age, state, message, src);
         message = "I'm a loser";
     }
 }
