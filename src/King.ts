@@ -7,10 +7,11 @@ export class King extends Character {
         age: number,
         state: boolean,
         message: string,
+        src: string,
         public yearsOfReign: number
     ) {
-        super(name, family, age, state, message);
-        state = true
+        super(name, family, age, state, message, src);
+        state = true;
         message = 'You are all going to die';
     }
 }

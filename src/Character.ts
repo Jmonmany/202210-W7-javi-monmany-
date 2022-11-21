@@ -10,7 +10,8 @@ export class Character implements Person {
         public family: string,
         public age: number,
         public state: boolean,
-        public message: string
+        public message: string,
+        public src: string
     ) {}
     report() {
         return this.message;
