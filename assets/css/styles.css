@@ -96,3 +96,7 @@ body {
     right: 5px;
     top: 5px;
 }
+
+.rotate {
+    rotate: 180deg;
+}

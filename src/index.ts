@@ -9,13 +9,14 @@ import { Squire } from './Squire.js';
 
 // characterMessages(characters);
 
-type imagesType = {
+type stringType = {
     src: string;
     alt: string;
 };
+
 let charactersTemplate: string[] = [];
 const main = () => {
-    const images: imagesType[] = [
+    const images: stringType[] = [
         {
             src: './assets/img/joffrey.jpg',
             alt: `${characters[0].name} ${characters[0].family}`,
@@ -37,7 +38,28 @@ const main = () => {
             alt: `${characters[4].name} ${characters[4].family}`,
         },
     ];
-
+    const datatype: stringType[] = [
+        {
+            src: './assets/img/joffrey.jpg',
+            alt: `${characters[0].name} ${characters[0].family}`,
+        },
+        {
+            src: './assets/img/jaime.jpg',
+            alt: `${characters[1].name} ${characters[1].family}`,
+        },
+        {
+            src: './assets/img/daenerys.jpg',
+            alt: `${characters[2].name} ${characters[2].family}`,
+        },
+        {
+            src: './assets/img/tyrion.jpg',
+            alt: `${characters[3].name} ${characters[3].family}`,
+        },
+        {
+            src: './assets/img/bronn.jpg',
+            alt: `${characters[4].name} ${characters[4].family}`,
+        },
+    ];
     characters.forEach((item, i) => {
         let characterTemp: string;
         characterTemp = `<li class="character col">
@@ -55,8 +77,7 @@ const main = () => {
                                 <ul class="list-unstyled">
                                     <li>Age: ${characters[i].age} years</li>
                                     <li>
-                                        Estado:
-                                        <i class="fas fa-thumbs-down"></i>
+                                        State:
                                         <i class="fas fa-thumbs-up"></i>
                                     </li>
                                 </ul>
@@ -69,10 +90,10 @@ const main = () => {
                                         }</li>
                                     </ul>
                                     <div class="character__actions">
-                                        <button class="character__action btn">
+                                        <button class="character__action btn" data-value = "${i}">
                                             Speak
                                         </button>
-                                        <button class="character__action btn">
+                                        <button class="character__action btn" data-value = "${i}">
                                             Die
                                         </button>
                                     </div>
@@ -91,10 +112,10 @@ const main = () => {
                                         }</li>
                                     </ul>
                                     <div class="character__actions">
-                                        <button class="character__action btn">
+                                        <button class="character__action btn" data-value = "${i}">
                                             Speak
                                         </button>
-                                        <button class="character__action btn">
+                                        <button class="character__action btn" data-value = "${i}">
                                             Die
                                         </button>
                                     </div>
@@ -113,10 +134,10 @@ const main = () => {
                                         }</li>
                                     </ul>
                                     <div class="character__actions">
-                                        <button class="character__action btn">
+                                        <button class="character__action btn" data-value = "${i}">
                                             Speak
                                         </button>
-                                        <button class="character__action btn">
+                                        <button class="character__action btn" data-value = "${i}">
                                             Die
                                         </button>
                                     </div>
@@ -132,10 +153,10 @@ const main = () => {
                                         }</li>
                                     </ul>
                                     <div class="character__actions">
-                                        <button class="character__action btn">
+                                        <button class="character__action btn" data-value = "${i}">
                                             Speak
                                         </button>
-                                        <button class="character__action btn">
+                                        <button class="character__action btn" data-value = "${i}">
                                             Die
                                         </button>
                                     </div>
@@ -155,10 +176,10 @@ const main = () => {
                                         }</li>
                                     </ul>
                                     <div class="character__actions">
-                                        <button class="character__action btn">
+                                        <button class="character__action btn" data-value = "${i}">
                                             Speak
                                         </button>
-                                        <button class="character__action btn">
+                                        <button class="character__action btn" data-value = "${i}">
                                             Die
                                         </button>
                                     </div>
@@ -172,6 +193,44 @@ const main = () => {
     });
     const slots = document.querySelectorAll('slot');
     slots.forEach((item, i) => (item.outerHTML = charactersTemplate[i]));
+
+    // Die-button-action
+    // <i class="fas fa-thumbs-down"></i>;
+    function buttonActions(event: Event) {
+        const element = event.target as HTMLElement;
+        if (element === undefined) return;
+        if (element.innerText === 'Die') {
+            let i =
+                element.parentElement?.parentElement?.parentElement?.children[1]
+                    .children[0].children[1].children[0];
+
+            i?.classList.replace('fa-thumbs-up', 'fa-thumbs-down');
+
+            let image =
+                element.parentElement?.parentElement?.parentElement
+                    ?.parentElement?.children[0];
+            image?.classList.add('rotate');
+
+            let dataButtonValue: number = +(element.dataset.value as any);
+
+            characters[dataButtonValue].death();
+            console.table(characters[dataButtonValue]);
+        }
+    }
+
+    const nodeList = document.querySelectorAll('div button');
+
+    nodeList.forEach((item) => item.addEventListener('click', buttonActions));
 };
 
+// const characterButtons: Array = [
+//     ...document.querySelectorAll('.character__action'),
+// ];
+
+// const values = [...characterButtons].map((item) => item)
+// console.log(values)
+// [...characterButtons].forEach((item) =>
+//     item.addEventListener('click', buttonActions)
+// );
+// console.log(characterButtons);
 document.addEventListener('DOMContentLoaded', main);
