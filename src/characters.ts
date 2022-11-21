@@ -35,7 +35,7 @@ const tyrion = new Advisor(
     'Lannister',
     35,
     true,
-    "I don't know why, but I think I'm going to die soo",
+    "I don't know why, but I think I'm going to die soon",
     daenerys.name
 );
 const bronn = new Squire('Bronn', '', 40, true, "I'm a loser", jaime.name, 8);
