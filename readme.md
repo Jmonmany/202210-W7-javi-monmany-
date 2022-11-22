@@ -39,7 +39,3 @@ A squire, in addition to the information he has as a character, has the followin
     - In the list with class `metadata`, make only the `li` corresponding to the character appear.
 2. When the user clicks the `dies` button, the character's state must change, and the interface must reflect the change.
 3. When the user clicks the "speaks" button, the element with class `communications` must appear with the corresponding text and image. Make this `communications` element have class `on` for 2 seconds and then remove it.
-
-https://jmonmany-w7challenge.netlify.app/
-
-
