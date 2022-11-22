@@ -3,11 +3,10 @@ import { characters } from './characters.js';
 import { Fighter } from './Fighter.js';
 import { King } from './King.js';
 import { Squire } from './Squire.js';
-
-const charactersTemplate: string[] = [];
+const charactersTemplate = [];
 const main = () => {
     characters.forEach((item, i) => {
-        let characterTemp: string;
+        let characterTemp;
         characterTemp = `<li class="character col">
         <div class="card character__card">
                             <img
@@ -31,7 +30,7 @@ const main = () => {
         if (characters[i] instanceof King) {
             characterTemp += `<div class="character__overlay">
             <ul class="list-unstyled">
-            <li>Years of reign: ${(characters[i] as King).yearsOfReign}</li>
+            <li>Years of reign: ${characters[i].yearsOfReign}</li>
             </ul>
             <div class="character__actions">
             <button class="character__action btn" data-value = "${i}">
@@ -48,12 +47,8 @@ const main = () => {
         if (characters[i] instanceof Fighter) {
             characterTemp += `<div class="character__overlay">
                                     <ul class="list-unstyled">
-                                    <li>Weapon: ${
-                                        (characters[i] as Fighter).weapon
-                                    }</li>
-                                        <li>Dexterity: ${
-                                            (characters[i] as Fighter).dexterity
-                                        }</li>
+                                    <li>Weapon: ${characters[i].weapon}</li>
+                                        <li>Dexterity: ${characters[i].dexterity}</li>
                                     </ul>
                                     <div class="character__actions">
                                     <button class="character__action btn" data-value = "${i}">
@@ -70,9 +65,7 @@ const main = () => {
         if (characters[i] instanceof Advisor) {
             characterTemp += `<div class="character__overlay">
                                     <ul class="list-unstyled">
-                                    <li>Advising to: ${
-                                        (characters[i] as Advisor).advising
-                                    }</li>
+                                    <li>Advising to: ${characters[i].advising}</li>
                                     </ul>
                                     <div class="character__actions">
                                     <button class="character__action btn" data-value = "${i}">
@@ -89,13 +82,8 @@ const main = () => {
         if (characters[i] instanceof Squire) {
             characterTemp += `<div class="character__overlay">
                                     <ul class="list-unstyled">
-                                    <li>Serving to: ${
-                                        (characters[i] as Squire).serving
-                                    }</li>
-                                    <li>Degree of sucking up: ${
-                                        (characters[i] as Squire)
-                                            .degreeOfSuckingUp
-                                    }</li>
+                                    <li>Serving to: ${characters[i].serving}</li>
+                                    <li>Degree of sucking up: ${characters[i].degreeOfSuckingUp}</li>
                                         </ul>
                                         <div class="character__actions">
                                         <button class="character__action btn" data-value = "${i}">
@@ -114,29 +102,23 @@ const main = () => {
     });
     const slots = document.querySelectorAll('slot');
     slots.forEach((item, i) => (item.outerHTML = charactersTemplate[i]));
-
-    function buttonActions(event: Event) {
-        const element = event.target as HTMLElement;
-        const dataButtonValue = +(element.dataset.value as string);
+    function buttonActions(event) {
+        const element = event.target;
+        const dataButtonValue = +element.dataset.value;
         if (element.innerText === 'Die') {
             dieFunction(element);
             return characters[dataButtonValue].death();
         }
-
-        (comunicationDiv as HTMLDivElement).classList.add('on');
-        (comunicationPgraph as HTMLParagraphElement).innerText =
-            characters[dataButtonValue].report();
-        (comunicationPicture as HTMLImageElement).src =
-            characters[dataButtonValue].src;
-        (comunicationPicture as HTMLImageElement).alt =
+        comunicationDiv.classList.add('on');
+        comunicationPgraph.innerText = characters[dataButtonValue].report();
+        comunicationPicture.src = characters[dataButtonValue].src;
+        comunicationPicture.alt =
             characters[dataButtonValue].name +
             characters[dataButtonValue].family;
-
         return setTimeout(() => {
-            (comunicationDiv as HTMLDivElement).classList.remove('on');
+            comunicationDiv.classList.remove('on');
         }, 2000);
     }
-
     const nodeList = document.querySelectorAll('div button');
     nodeList.forEach((item) => item.addEventListener('click', buttonActions));
     const comunicationDiv = document.querySelector('.comunications');
@@ -145,17 +127,14 @@ const main = () => {
         '.comunications__picture'
     );
 };
-
-const dieFunction = (element: HTMLElement) => {
+const dieFunction = (element) => {
     const i =
         element.parentElement?.parentElement?.parentElement?.children[1]
             .children[0].children[1].children[0];
-
     i?.classList.replace('fa-thumbs-up', 'fa-thumbs-down');
     const image =
         element.parentElement?.parentElement?.parentElement?.parentElement
             ?.children[0];
     image?.classList.add('rotate');
 };
-
 document.addEventListener('DOMContentLoaded', main);
