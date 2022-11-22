@@ -12,7 +12,7 @@ const main = () => {
         <div class="card character__card">
                             <img
                             src=${characters[i].src}
-                            alt=${characters[i].name} ${characters[i].family}
+                            alt=${characters[i].name}${characters[i].family}
                             class="character__picture card-img-top"
                             />
                             <div class="card-body">
