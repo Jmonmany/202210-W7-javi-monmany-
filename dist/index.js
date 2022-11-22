@@ -83,8 +83,7 @@ const main = () => {
             characterTemp += `<div class="character__overlay">
                                     <ul class="list-unstyled">
                                     <li>Serving to: ${characters[i].serving}</li>
-                                    <li>Degree of sucking up: ${characters[i]
-                .degreeOfSuckingUp}</li>
+                                    <li>Degree of sucking up: ${characters[i].degreeOfSuckingUp}</li>
                                         </ul>
                                         <div class="character__actions">
                                         <button class="character__action btn" data-value = "${i}">
@@ -111,13 +110,11 @@ const main = () => {
             return characters[dataButtonValue].death();
         }
         comunicationDiv.classList.add('on');
-        comunicationPgraph.innerText =
-            characters[dataButtonValue].report();
-        comunicationPicture.src =
-            characters[dataButtonValue].src;
+        comunicationPgraph.innerText = characters[dataButtonValue].report();
+        comunicationPicture.src = characters[dataButtonValue].src;
         comunicationPicture.alt =
             characters[dataButtonValue].name +
-                characters[dataButtonValue].family;
+            characters[dataButtonValue].family;
         return setTimeout(() => {
             comunicationDiv.classList.remove('on');
         }, 2000);
@@ -126,14 +123,18 @@ const main = () => {
     nodeList.forEach((item) => item.addEventListener('click', buttonActions));
     const comunicationDiv = document.querySelector('.comunications');
     const comunicationPgraph = document.querySelector('.comunications__text');
-    const comunicationPicture = document.querySelector('.comunications__picture');
+    const comunicationPicture = document.querySelector(
+        '.comunications__picture'
+    );
 };
 const dieFunction = (element) => {
-    const i = element.parentElement?.parentElement?.parentElement?.children[1]
-        .children[0].children[1].children[0];
+    const i =
+        element.parentElement?.parentElement?.parentElement?.children[1]
+            .children[0].children[1].children[0];
     i?.classList.replace('fa-thumbs-up', 'fa-thumbs-down');
-    const image = element.parentElement?.parentElement?.parentElement?.parentElement
-        ?.children[0];
+    const image =
+        element.parentElement?.parentElement?.parentElement?.parentElement
+            ?.children[0];
     image?.classList.add('rotate');
 };
 document.addEventListener('DOMContentLoaded', main);
