@@ -71,7 +71,7 @@ const main = () => {
             characterTemp += `<div class="character__overlay">
                                     <ul class="list-unstyled">
                                     <li>Advising to: ${
-                                        (characters[i] as Advisor).advising
+                                        (characters[i] as Advisor).advising.name
                                     }</li>
                                     </ul>
                                     <div class="character__actions">
@@ -90,7 +90,7 @@ const main = () => {
             characterTemp += `<div class="character__overlay">
                                     <ul class="list-unstyled">
                                     <li>Serving to: ${
-                                        (characters[i] as Squire).serving
+                                        (characters[i] as Squire).serving.name
                                     }</li>
                                     <li>Degree of sucking up: ${
                                         (characters[i] as Squire)

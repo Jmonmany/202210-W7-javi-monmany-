@@ -8,7 +8,7 @@ export class Advisor extends Character {
         state: boolean,
         message: string,
         src: string,
-        public advising: string
+        public advising: Character
     ) {
         super(name, family, age, state, message, src);
         state = true;

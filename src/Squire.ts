@@ -1,4 +1,5 @@
 import { Character } from './Character.js';
+import { Fighter } from './Fighter.js';
 
 export class Squire extends Character {
     constructor(
@@ -8,7 +9,7 @@ export class Squire extends Character {
         state: boolean,
         message: string,
         src: string,
-        public serving: string,
+        public serving: Fighter,
         public degreeOfSuckingUp: number
     ) {
         super(name, family, age, state, message, src);

@@ -19,7 +19,7 @@ const jaime = new Fighter(
     true,
     'First I hit and then I ask',
     './assets/img/jaime.jpg',
-    'sword',
+    'Sword',
     5
 );
 const daenerys = new Fighter(
@@ -29,7 +29,7 @@ const daenerys = new Fighter(
     true,
     'First I hit and then I ask',
     './assets/img/daenerys.jpg',
-    'dragon',
+    'Dragon',
     10
 );
 const tyrion = new Advisor(
@@ -39,7 +39,7 @@ const tyrion = new Advisor(
     true,
     "I don't know why, but I think I'm going to die soon",
     './assets/img/tyrion.jpg',
-    daenerys.name
+    daenerys
 );
 const bronn = new Squire(
     'Bronn',
@@ -48,7 +48,7 @@ const bronn = new Squire(
     true,
     "I'm a loser",
     './assets/img/bronn.jpg',
-    jaime.name,
+    jaime,
     8
 );
 
